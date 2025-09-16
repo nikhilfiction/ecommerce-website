@@ -5,3 +5,5 @@ export default function App() {
   );
 }
 
+// 1.tailwind css config done
+// 
