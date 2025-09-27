@@ -1,3 +1,7 @@
 //TODO 1. tailwind configurations done
 //TODO 2. redux configurations done
 //TODO 3. initial layout
+
+//in  redux the modern way of using any async operation and storing the data to store: asyncThunk
+// redux: action, reducers, stores,
+//reduxslices-> createSlice
