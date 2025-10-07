@@ -6,6 +6,7 @@ import Products from "./pages/Products";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Cartpage from "./pages/Cart";
+import Checkout from "./pages/Checkout";
 export default function App() {
   return (
     //Layout
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="/register" element={<Register/>}></Route>
         <Route path="/login" element={<Login/>}></Route>
         <Route path="/cart" element={<Cartpage/>}></Route>
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
       </main>
       <Footer />
