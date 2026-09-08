@@ -71,17 +71,25 @@ const productSlice = createSlice({
             })
             .addCase(fetchProducts.fulfilled, (state, action) => {
                 state.loading = false;
-                state.items = action.payload.products;
-                state.page = action.payload.page;
-                state.totalPages = action.payload.totalPages;
-                state.totalItems = action.payload.totalItems;
+                const payload = action.payload;
+                // tolerate an older/mismatched backend that still returns a plain array
+                const list = Array.isArray(payload) ? payload : payload?.products;
+                state.items = Array.isArray(list) ? list : [];
+                state.page = payload?.page ?? 1;
+                state.totalPages = payload?.totalPages ?? 1;
+                state.totalItems = payload?.totalItems ?? state.items.length;
             })
             .addCase(fetchProducts.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
+                state.items = [];
             })
             .addCase(fetchCategories.fulfilled, (state, action) => {
-                state.categories = action.payload;
+                state.categories = Array.isArray(action.payload) ? action.payload : [];
+            })
+            .addCase(fetchCategories.rejected, (state) => {
+                // categories are a nice-to-have filter; never let this break the page
+                state.categories = [];
             })
     }
 
